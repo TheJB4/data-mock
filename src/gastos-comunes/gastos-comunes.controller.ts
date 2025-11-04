@@ -19,10 +19,5 @@ export class GastosComunesController {
   getFondosProvisionesCompleted() {
     return this.gastosComunesService.getFondosProvisionesCompleted();
   }
-
-  @Get('recibos')
-  getRecibos(@Query('filter') filter?: string) {
-    return this.gastosComunesService.getRecibos(filter);
-  }
 }
 

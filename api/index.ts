@@ -28,8 +28,16 @@ async function bootstrapServer(): Promise<express.Application> {
   return expressApp;
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const server = await bootstrapServer();
-  server(req, res);
+export default async function handler(
+  req: VercelRequest,
+  res: VercelResponse,
+): Promise<void> {
+  try {
+    const server = await bootstrapServer();
+    server(req as any, res as any);
+  } catch (error) {
+    console.error('Error in handler:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 }
 
