@@ -1,8 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { AppModule } from '../src/app.module';
 import express from 'express';
 import { VercelRequest, VercelResponse } from '@vercel/node';
+
+// Importar AppModule - en Vercel se compila primero, así que usamos dist
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { AppModule } = require('../dist/src/app.module');
 
 let cachedServer: express.Application;
 
