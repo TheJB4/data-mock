@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { GastosComunesService } from './gastos-comunes.service';
 
 @Controller('gastos-comunes')
@@ -18,6 +18,11 @@ export class GastosComunesController {
   @Get('fondos-provisiones/finalizados')
   getFondosProvisionesCompleted() {
     return this.gastosComunesService.getFondosProvisionesCompleted();
+  }
+
+  @Get('recibos')
+  getRecibos(@Query('filter') filter?: string) {
+    return this.gastosComunesService.getRecibos(filter);
   }
 }
 
